@@ -1,3 +1,5 @@
+use std::vec;
+
 fn print_elements(elements: &[String])  {
     // for element in elements {
     //     println!("{}", element);
@@ -18,8 +20,16 @@ fn to_uppercase(elements: &[String]) -> Vec<String> {
     elements.iter().map(|el| el.to_uppercase()).collect()
 }
 
-fn move_elements() {
-    
+fn move_elements(vec_a: Vec<String>, vec_b: &mut Vec<String>) {
+    vec_a.into_iter().for_each(|el| vec_b.push(el));
+}
+
+fn explode(elements: &[String]) -> Vec<Vec<String>> {
+    elements.iter().map(|el| el.chars().map(|c| c.to_string()).collect()).collect()
+}
+
+fn find_color_or(elements: &[String], search: &str, fallback: &str) -> String {
+    elements.iter().find(|el| el.contains(search)).map_or(String::from(fallback), |el| el.to_string())
 }
 
 fn main() {
@@ -38,5 +48,12 @@ fn main() {
     // println!("{:#?}", colors);
     // let uppercased = to_uppercase(&colors);
     // println!("{:#?}", uppercased);
+    // let mut destination = vec![];
+    // move_elements(colors, &mut destination);
+    // println!("{:#?}", destination);
+    // let exploded = explode(&colors);
+    // println!("{:#?}", exploded);
+    let found_color = find_color_or(&colors, "pi", "black");
+    println!("{}", found_color);
 }
 
