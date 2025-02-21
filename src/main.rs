@@ -1,10 +1,15 @@
-fn print_elements(elements: &Vec<String>)  {
+fn print_elements(elements: &[String])  {
     // for element in elements {
     //     println!("{}", element);
     // } 
 
-    elements.iter().for_each(|el| println!("{}", el));
+    // elements.iter().for_each(|el| println!("{}", el));
+    elements
+        .iter()
+        .map(|el| format!("{} {}", el, el))
+        .for_each(|el| println!("{}", el));
 }
+ 
 
 fn main() {
    let colors = vec![
@@ -15,3 +20,4 @@ fn main() {
 
     print_elements(&colors);
 }
+
